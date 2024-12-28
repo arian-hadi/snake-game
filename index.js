@@ -277,39 +277,44 @@
     //   if (!isGameOver()) PlayButton(true);
     // };
   
+    const toggleGamePause = () => {
+        if (gameActive) {
+            pauseGame();
+        } else {
+            resumeGame();
+        }
+    };
+
     const pauseGame = () => {
-      gameActive = false;
-  
-      // Show the play message
-      const playMessage = document.getElementById("play");
-      if (playMessage) {
-          playMessage.style.display = "block";
-      }
-  
-      // Set pause button state if needed
-      pauseEl.setAttribute("class", "pause-not-active");
-  
-      if (!isGameOver()) PlayButton(true);
-  };
-  
-  const resumeGame = () => {
-      gameActive = true;
-  
-      // Hide the play message
-      const playMessage = document.getElementById("play");
-      if (playMessage) {
-          playMessage.style.display = "none";
-      }
-  
-      // Set pause button state if needed
-      pauseEl.setAttribute("class", "pause-active");
-  
-      PlayButton(false);
-  };
-  
+        if (!gameActive) return; // Prevent redundant state changes
+        gameActive = false;
+
+        // Update button appearance and text
+        pauseEl.setAttribute("class", "game-status-button pause-not-active");
+        pauseEl.innerHTML = "▶"; // Play icon
+        PlayButton(true);
+    };
+
+    const resumeGame = () => {
+        if (gameActive) return; // Prevent redundant state changes
+        gameActive = true;
+
+        // Start movement if not initialized
+        if (head.vX === 0 && head.vY === 0) {
+            head.vX = 1; // Default to moving right
+            head.vY = 0;
+        }
+
+        // Update button appearance and text
+        pauseEl.setAttribute("class", "game-status-button pause-active");
+        pauseEl.innerHTML = "⏸"; // Pause icon
+        PlayButton(false);
+    };
+      
+    pauseEl.addEventListener("click", toggleGamePause);
 
 
-    pauseEl.addEventListener("click", pauseGame);
+    // pauseEl.addEventListener("click", pauseGame);
   
     let showGrid = false;
   

@@ -33,7 +33,13 @@ body {
   justify-content: space-between; /* Space the two sections apart */
   width: 600px; /* Set the width to the canvas width */
   margin: 0 auto; /* Center the container */
-  padding: 20px;
+  padding: 5px;
+}
+
+.control-buttons {
+  display: flex; /* Use flexbox for horizontal alignment */
+  align-items: center; /* Align items vertically in the center */
+  gap: 10px; /* Add spacing between buttons and logo */
 }
 
 #score, #high-score {
@@ -70,6 +76,29 @@ body {
   flex-direction: column;
   gap: 12px;
 }
+
+.game-status-button {
+  cursor: pointer;
+  text-align: center;
+  line-height: 40px;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #333;
+  color: white;
+  border: none;
+  margin: 0 10px;
+}
+
+.pause-active {
+  background-color: #f00; /* Red for active */
+}
+
+.pause-not-active {
+  background-color: #0f0; /* Green for paused */
+}
+
 
 #game_over {
   position: fixed;
