@@ -39,7 +39,7 @@ body {
 .control-buttons {
   display: flex; /* Use flexbox for horizontal alignment */
   align-items: center; /* Align items vertically in the center */
-  gap: 10px; /* Add spacing between buttons and logo */
+  gap: 50px; /* Add spacing between buttons and logo */
 }
 
 #score, #high-score {
@@ -60,7 +60,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px; /* Space between the control key items */
-  align-items: flex-start; /* Align to the left */
+  align-items: flex-start; /
 }
 
 #control-head {
@@ -77,27 +77,6 @@ body {
   gap: 12px;
 }
 
-.game-status-button {
-  cursor: pointer;
-  text-align: center;
-  line-height: 40px;
-  font-size: 24px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #333;
-  color: white;
-  border: none;
-  margin: 0 10px;
-}
-
-.pause-active {
-  background-color: #f00; /* Red for active */
-}
-
-.pause-not-active {
-  background-color: #0f0; /* Green for paused */
-}
 
 
 #game_over {
@@ -115,6 +94,58 @@ body {
 
 }
 
+
+#pause {
+  width: 50px; /* Circle size */
+  height: 50px;
+  border-radius: 50%; /* Makes it a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white; /* Icon color */
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a nice shadow */
+  background: transparent; 
+  border: 2px solid linear; 
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+
+#pause.pause-active {
+  background: linear-gradient(20deg, rgb(0, 73, 7), #77ff38);
+}
+
+#pause.pause-not-active {
+  background:linear-gradient(20deg, rgb(255, 0, 21), #ff31ea);
+}
+
+#pause.pause-active::after {
+  content: "⏸"; 
+}
+
+#pause.pause-not-active::after {
+  content: "▶"; 
+}
+
+
+#pause:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); 
+}
+
+
+#pause.pause-active:hover {
+  background-color: #006400; 
+}
+
+#pause.pause-not-active:hover {
+  background-color: #8B0000; 
+}
+
+
 #reset,
 #show-grid,
 .pause-active {
@@ -131,6 +162,7 @@ body {
   cursor: pointer;
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
+
 
 #reset:hover,
 #show-grid:hover,
