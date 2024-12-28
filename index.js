@@ -159,8 +159,11 @@
     head.y += head.vY;
   };
 
+  
+  let gameOverState = false;
   const changeDir = (e) => {
     let key = e.keyCode;
+    if (gameOverState) return;
 
     // Pause/Resume Game with Space or Escape
     if (key === 32 || key === 27) { // Space or Escape
@@ -256,7 +259,10 @@
     text.innerHTML = "game over !";
     const body = document.querySelector("body");
     body.appendChild(text);
+    gameOverState = true;
   };
+
+
 
   addEventListener("keydown", changeDir);
 
