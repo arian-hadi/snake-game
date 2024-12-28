@@ -9,21 +9,34 @@
     <script src="index.js" defer></script>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <div id="high-score"></div>
-    <div id="score"></div>
+  <canvas id="canvas"></canvas>
+
+  <!-- Create a container that holds both score and controls -->
+  <div class="container">
+    <!-- Left section for controls -->
     <div id="control-keys">
       <div id="control-head">Controls</div>
       <div>Left 👉 A or ➡️</div>
       <div>Right 👉 D or ⬅️</div>
       <div>Up 👉 W or ⬆️</div>
       <div>Down 👉 S or ⬇️</div>
+      <div>Pause or play 👉Space/Esc</div>
     </div>
+
+    <!-- Right section for high score and score -->
     <div id="controls">
-        <button id="show-grid">SHOW GRID</button>
-        <button id="pause" class="pause-active">PAUSE</button>
-        <button id="reset">RESET</button>
+      <div id="score">Score: 0</div>
+      <div id="high-score">High Score: 0</div>
     </div>
-    <div id="play">Press any key to start<span style="font-size: 3em;">⌨️</span></div>
-  </body>
+  </div>
+
+  <div>
+    <button id="show-grid">SHOW GRID</button>
+    <button id="pause" class="pause-active">PAUSE</button>
+    <button id="reset">RESET</button>
+  </div>
+
+  <div id="play">Press control keys to start<span style="font-size: 3em;">⌨️</span></div>
+</body>
+
 </html>

@@ -161,70 +161,58 @@
   
     const changeDir = (e) => {
       let key = e.keyCode;
-    
+  
       // Pause/Resume Game with Space or Escape
       if (key === 32 || key === 27) { // Space or Escape
-        if (!gameActive) {
-          // Start the game on first run or after reset
-          gameActive = true;
-          pauseEl.setAttribute("class", "pause-active");
-    
-          // Default Movement Initialization (Move Right)
+          if (!gameActive) {
+              resumeGame(); // Resume the game
+              if (head.vX === 0 && head.vY === 0) {
+                head.vX = 1; // Start moving right
+                head.vY = 0;
+              }
+          } else {
+              pauseGame(); // Pause the game
+          }
+          return;
+      }
+  
+      // Resume Game on Any Key
+      if (!gameActive) {
+          resumeGame();
           if (head.vX === 0 && head.vY === 0) {
             head.vX = 1; // Start moving right
             head.vY = 0;
           }
-        } else {
-          // Pause or Resume
-          gameActive = false; // Pause the game
-          pauseEl.setAttribute("class", "pause-not-active");
-        }
-        return;
+          return;
       }
-    
-      // Start Game with Any Key (excluding Space and Escape, which are handled above)
-      if (!gameActive) {
-        gameActive = true; // Activate the game
-        pauseEl.setAttribute("class", "pause-active");
-    
-        // Default Movement Initialization (Move Right)
-        if (head.vX === 0 && head.vY === 0) {
-          head.vX = 1; // Start moving right
-          head.vY = 0;
-        }
-        return;
-      }
-    
   
-      if (key == 68 || key == 39) {
-        if (head.vX === -1) return;
-        head.vX = 1;
-        head.vY = 0;
-        // gameActive = true;
-        return;
+      // Movement Keys (WASD or Arrow Keys)
+      if (key == 68 || key == 39) { // Right
+          if (head.vX === -1) return;
+          head.vX = 1;
+          head.vY = 0;
+          return;
       }
-      if (key == 65 || key == 37) {
-        if (head.vX === 1) return;
-        head.vX = -1;
-        head.vY = 0;
-        // gameActive = true;
-        return;
+      if (key == 65 || key == 37) { // Left
+          if (head.vX === 1) return;
+          head.vX = -1;
+          head.vY = 0;
+          return;
       }
-      if (key == 87 || key == 38) {
-        if (head.vY === 1) return;
-        head.vX = 0;
-        head.vY = -1;
-        // gameActive = true;
-        return;
+      if (key == 87 || key == 38) { // Up
+          if (head.vY === 1) return;
+          head.vX = 0;
+          head.vY = -1;
+          return;
       }
-      if (key == 83 || key == 40) {
-        if (head.vY === -1) return;
-        head.vX = 0;
-        head.vY = 1;
-        // gameActive = true;
-        return;
+      if (key == 83 || key == 40) { // Down
+          if (head.vY === -1) return;
+          head.vX = 0;
+          head.vY = 1;
+          return;
       }
-    };
+  };
+  
   
     const foodCollision = () => {
       let foodCollision = false;
@@ -280,15 +268,47 @@
       }
     };
   
+    // const pauseGame = () => {
+    //   gameActive = false;
+    //   if(!gameActive) {
+    //     pauseEl.removeAttribute('class');
+    //     pauseEl.setAttribute('class', 'pause-not-active')
+    //   }
+    //   if (!isGameOver()) PlayButton(true);
+    // };
+  
     const pauseGame = () => {
       gameActive = false;
-      if(!gameActive) {
-        pauseEl.removeAttribute('class');
-        pauseEl.setAttribute('class', 'pause-not-active')
-      }
-      if (!isGameOver()) PlayButton(true);
-    };
   
+      // Show the play message
+      const playMessage = document.getElementById("play");
+      if (playMessage) {
+          playMessage.style.display = "block";
+      }
+  
+      // Set pause button state if needed
+      pauseEl.setAttribute("class", "pause-not-active");
+  
+      if (!isGameOver()) PlayButton(true);
+  };
+  
+  const resumeGame = () => {
+      gameActive = true;
+  
+      // Hide the play message
+      const playMessage = document.getElementById("play");
+      if (playMessage) {
+          playMessage.style.display = "none";
+      }
+  
+      // Set pause button state if needed
+      pauseEl.setAttribute("class", "pause-active");
+  
+      PlayButton(false);
+  };
+  
+
+
     pauseEl.addEventListener("click", pauseGame);
   
     let showGrid = false;

@@ -28,11 +28,12 @@ body {
   margin-bottom: 20px;
 }
 
-.top-bar {
+.container {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin: 0 auto 20px auto;
+  justify-content: space-between; /* Space the two sections apart */
+  width: 600px; /* Set the width to the canvas width */
+  margin: 0 auto; /* Center the container */
+  padding: 20px;
 }
 
 #score, #high-score {
@@ -47,6 +48,27 @@ body {
 
 #high-score {
   color: yellow;
+}
+
+#control-keys {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between the control key items */
+  align-items: flex-start; /* Align to the left */
+}
+
+#control-head {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* Adjust button and other UI elements */
+#controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 #game_over {
