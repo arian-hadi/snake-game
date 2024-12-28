@@ -51,14 +51,17 @@ body {
 
 #game_over {
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3em;
+  font-size: 2em;
   text-transform: uppercase;
   font-family: "Press Start 2P", cursive;
   color: red;
   text-shadow: 0 0 10px red;
+  text-align: center; /* Align text in the center */
+  z-index: 10; /* Ensures it stays above other elements */
+
 }
 
 #reset,
@@ -101,16 +104,27 @@ body {
 }
 
 #play {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: absolute; /* Position it relative to the canvas */
+  top: 50%; /* Vertically center */
+  left: 50%; /* Horizontally center */
+  transform: translate(-50%, -50%); /* Center the element by its middle */
   font-family: "Press Start 2P", cursive;
   font-size: 1.3em;
-  padding: 20px;
   color: lightgreen;
-  animation: animate-play 1.4s linear infinite;
+  text-align: center; /* Ensure text is centered */
+  padding: 20px;
+  z-index: 10; /* Ensure it stays above the canvas */
+  white-space: normal; /* Allow wrapping when text is long */
+  width: 80%; /* Limit the width so text stays inside the canvas */
+  overflow: hidden; /* Hide any overflow if the text is too long */
 }
+
+#play span {
+  display: inline-block;
+  width: 100%; /* Make the emoji fit properly */
+  text-align: center;
+}
+
 
 @keyframes animate-play {
   0% {
