@@ -42,6 +42,8 @@ body {
   gap: 50px; /* Add spacing between buttons and logo */
 }
 
+
+
 #score, #high-score {
   font-size: larger;
   text-transform: uppercase;

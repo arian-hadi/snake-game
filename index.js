@@ -316,6 +316,27 @@
       pauseEl.classList.add("pause-active"); // Pause icon
       PlayButton(false);
   };
+
+  const disableAllFocus = () => {
+    const focusableElements = document.querySelectorAll(
+      "button, a, input, [tabindex]"
+    );
+  
+    focusableElements.forEach((el) => {
+      el.setAttribute("tabindex", "-1");
+    });
+  };
+  
+  const trapFocusInGame = (e) => {
+    if (!e.target.closest("#canvas")) {
+      e.preventDefault();
+      canvas.focus(); // Keep focus in the canvas
+    }
+  };
+  
+  document.addEventListener("keydown", trapFocusInGame);
+  disableAllFocus();
+  
     
   pauseEl.addEventListener("click", toggleGamePause);
 
